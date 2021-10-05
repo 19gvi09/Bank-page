@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactor</title>
+
+    <!-- -->
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+    <script src="./Vue/BarChart.vue.js"></script>
+    <script src="./Vue/ColumnChart.vue.js"></script>
+    <script src="./Vue/CapitalStructure.vue.js"></script>
+    <script src="./Vue/CapitalAllocation.vue.js"></script>
+    <script src="./Vue/LimitUtilization.vue.js"></script>
+    <!-- -->
+</head>
+<body>
+    <!-- -->
+    <div id="app">
+        <Capital-Structure :data=CapitalStructureData></Capital-Structure>
+        <Capital-Allocation :data=CapitalAllocationData></Capital-Allocation>
+        <Limit-Utilization :data=LimitUtilizationData></Limit-Utilization>
+    </div>
+
+    <script src="./Vue/main.js"></script>
+    <!-- -->
+</body>
+</html>
