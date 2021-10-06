@@ -7,7 +7,7 @@ const ColumnChart = {
             <div class="labels">
                 <div v-for="item in mass" :key="item.name" class="labels__label">
                     <div class="labels__square" :style="{background: item.color}"></div>
-                    <h4 class="labels__value">{{item.name}} ({{item.value}}%)</h4>
+                    <h5 class="labels__value">{{item.name}} ({{item.value}}%)</h5>
                 </div>
             </div>
         </div>

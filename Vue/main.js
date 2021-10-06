@@ -6,10 +6,36 @@ const app = Vue.createApp({
         LimitUtilization
     },
     data() {
-      return {
-        // Сюда запихните вашу функцию, которая делает запрос к серверу
-      }
+        return {
+            dates: null,
+            dataToday: null,
+            dataPrev: null,
+            pickedDate: null
+        }
     },
+    methods: {
+        getDates() {
+            fetch('data/dates.php')
+            .then(res => res.json())
+            .then(res => {
+                this.dates = res;
+                this.pickedDate = this.dates[0];
+                this.getData();
+            })
+        },
+        getData() {
+            fetch('data/load.php?date=' + this.pickedDate)
+            .then(res => res.json())
+            .then(res => {
+                this.dataToday = res;
+            });
+            fetch('data/load.php?date=' + this.prevDate)
+            .then(res => res.json())
+            .then(res => {
+                this.dataPrev = res;
+            })
+        }
+      },
     computed: {
         // Пропс для первой секции (Отчет об агрегированном объеме значимых рисков и структура потребления капитала)
         CapitalStructureData() {return {
@@ -203,19 +229,19 @@ const app = Vue.createApp({
                         },
                         {
                             data: {
-                                name: "Сеть",
+                                name: "Тестовый график",
                                 items: [
                                     {
-                                        value: 57, //yellow
+                                        value: 15, //yellow
                                         color: "#00ff00"
                                     },
                                     {
-                                        value: 60, //red
+                                        value: 20, //red
                                         color: "#ffff00"
                                     }
                                 ],
                                 mark: {
-                                    value: 43.16 //black
+                                    value: 10 //black
                                 }
                             }
                         },
@@ -776,7 +802,14 @@ const app = Vue.createApp({
                     ]
                 },
             ]
-        }}
+        }},
+        prevDate() {
+            index = this.dates.indexOf(this.pickedDate);
+            return this.dates[index + 1];
+        }
+    },
+    created() {
+        this.getDates();
     }
 })
 
